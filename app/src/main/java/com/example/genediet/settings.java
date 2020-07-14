@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +24,11 @@ public class settings extends AppCompatActivity {
 
     EditText fullname,age,genetype,weight;
     Button btnsave,btnback;
+    ImageView mprofile;
     FirebaseAuth mAuth;
     DatabaseReference mPatientDatabase;
     String userID,mName,mAge,mGenetype,mWeight;
+
 
 
 
@@ -37,6 +40,7 @@ public class settings extends AppCompatActivity {
 
         fullname = (EditText)findViewById(R.id.fullname);
         age = (EditText)findViewById(R.id.age);
+        mprofile = (ImageView)findViewById(R.id.profileimage);
         genetype = (EditText)findViewById(R.id.genetype);
         weight = (EditText)findViewById(R.id.weight);
         btnsave = (Button)findViewById(R.id.Save);
@@ -48,6 +52,16 @@ public class settings extends AppCompatActivity {
         mPatientDatabase = FirebaseDatabase.getInstance().getReference().child("user").child("patients").child(userID);
 
         getUserInfo();
+
+        mprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 1);
+            }
+        });
+
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override

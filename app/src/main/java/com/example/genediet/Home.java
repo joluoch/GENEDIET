@@ -27,6 +27,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent y = new Intent(Home.this,settings.class);
+                startActivity(y);
             }
         });
 
