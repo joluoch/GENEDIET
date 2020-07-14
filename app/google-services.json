@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "903083039804",
+    "firebase_url": "https://genediet-4ccb9.firebaseio.com",
+    "project_id": "genediet-4ccb9",
+    "storage_bucket": "genediet-4ccb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903083039804:android:4493130fa729845219f739",
+        "android_client_info": {
+          "package_name": "com.example.genediet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903083039804-790p4ieffq8ji1ifgt5t7tngtp7jthn9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.genediet",
+            "certificate_hash": "73e1ad4fdc9dff52cf0eae6a4d525ffa18676fcb"
+          }
+        },
+        {
+          "client_id": "903083039804-lf95bh1bci3h6g870hbl4a2bvi6ckm9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjYSr60dN7tE4NpuUIWTApbLb1GtmU0ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903083039804-lf95bh1bci3h6g870hbl4a2bvi6ckm9n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
