@@ -1,22 +1,38 @@
 package com.example.genediet;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.network.ResumableUploadStartRequest;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +43,8 @@ public class settings extends AppCompatActivity {
     ImageView mprofile;
     FirebaseAuth mAuth;
     DatabaseReference mPatientDatabase;
-    String userID,mName,mAge,mGenetype,mWeight;
+    String userID,mName,mAge,mGenetype,mWeight,mdp;
+    Uri resultUri;
 
 
 
@@ -104,6 +121,10 @@ public class settings extends AppCompatActivity {
                         mWeight = map.get("weight").toString();
                         weight.setText(mWeight);
                     }
+                    if(map.get("ProfileImageUrl")!=null){
+                        mdp = map.get("ProfileImageUrl").toString();
+                        Glide.with(getApplication()).load(mdp).into(mprofile);
+                    }
                 }
 
             }
@@ -128,8 +149,61 @@ public class settings extends AppCompatActivity {
         userInfo.put("weight",mWeight);
         mPatientDatabase.updateChildren(userInfo);
 
-        finish();
+        if(resultUri != null){
+            StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profile_image").child(userID);
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(),resultUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask= filepath.putBytes(data);
+
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    finish();
+                    return;
+
+                }
+            });
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//check this
+                    Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
+//Uri downloadurl = tasksnapshot.getDownloadurl();
+                    Map newImage = new HashMap();
+                    newImage.put("ProfileImageUrl",downloadUrl.toString());
+                    mPatientDatabase.updateChildren(newImage);
+
+                    finish();
+                    return;
+
+                }
+            });
+        }else {
+
+            finish();
+        }
+
+
+
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 1 && requestCode == Activity.RESULT_OK){
+            final Uri imageUri= data.getData();
+            resultUri = imageUri;
+            mprofile.setImageURI(resultUri);
+        }
+    }
 }
