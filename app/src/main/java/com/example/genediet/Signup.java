@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,10 +62,28 @@ public class Signup extends AppCompatActivity {
                                 Toast.makeText(Signup.this,"SignUp Unsuccessful, Please Try Again",Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                String user_id = mAuth.getCurrentUser().getUid();
-                                DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("user").child("patients").child(user_id);
-                                current_user_db.setValue(true);
-                                startActivity(new Intent(Signup.this,Home.class));
+                                mAuth.getCurrentUser().sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(Signup.this,"SignUp Successful . Please check email",Toast
+                                                            .LENGTH_SHORT).show();
+                                                    String user_id = mAuth.getCurrentUser().getUid();
+                                                    DatabaseReference current_user_db = FirebaseDatabase.getInstance()
+                                                            .getReference().child("user").child("patients").child(user_id);
+                                                    current_user_db.setValue(true);
+                                                    startActivity(new Intent(Signup.this,Home.class));
+                                                    Log.d("TAG", "Email sent.");
+                                                }
+                                                else {
+                                                    Toast.makeText(Signup.this,task.getException().getMessage(),Toast
+                                                            .LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+
+
                             }
                         }
                     });

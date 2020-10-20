@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Home extends AppCompatActivity {
     Button btnLogout, btnSettings;
     FirebaseAuth mFirebaseAuth;
+    FirebaseUser mFirebaseUser;
     FirebaseAuth.AuthStateListener mAuthStateListener;
 
 
@@ -19,6 +21,13 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        /*mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if(mFirebaseUser != null&& mFirebaseUser.isEmailVerified()){
+            Intent n = new Intent(Home.this,settings.class);
+        }*/
+
 
         btnLogout = (Button) findViewById(R.id.logout);
         btnSettings = (Button) findViewById(R.id.settings);
