@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GENE&amp;DIET</string>
+    <string name="profilename">Name:</string>
+    <string name="profileage">AGE:</string>
+    <string name="profilegene">GENE:</string>
+    <string name="profileweight_kg">WEIGHT(KG):</string>
 </resources>

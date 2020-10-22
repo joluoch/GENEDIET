@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
-                if( mFirebaseUser != null ){
+                if( mFirebaseUser != null && mFirebaseUser.isEmailVerified() ){
                     Toast.makeText(Login.this,"You are logged in",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(Login.this, Home.class);
                     startActivity(i);
@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
                 else  if(email.isEmpty() && pwd.isEmpty()){
                     Toast.makeText(Login.this,"Fields Are Empty!",Toast.LENGTH_SHORT).show();
                 }
-                else  if(!(email.isEmpty() && pwd.isEmpty())){
+                else  if(!(email.isEmpty() && pwd.isEmpty()&& mAuth.getCurrentUser().isEmailVerified())){
                     mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

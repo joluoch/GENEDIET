@@ -73,7 +73,8 @@ public class Signup extends AppCompatActivity {
                                                     DatabaseReference current_user_db = FirebaseDatabase.getInstance()
                                                             .getReference().child("user").child("patients").child(user_id);
                                                     current_user_db.setValue(true);
-                                                    startActivity(new Intent(Signup.this,Home.class));
+                                                    Intent e = new Intent(Signup.this,Login.class);
+                                                    startActivity(e);
                                                     Log.d("TAG", "Email sent.");
                                                 }
                                                 else {
