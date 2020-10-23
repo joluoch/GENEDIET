@@ -33,7 +33,7 @@ public class Signup extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         username = (EditText) findViewById(R.id.regmail);
         password = (EditText) findViewById(R.id.regpassword);
-        repeatPasword = (EditText) findViewById(R.id.reppassword);
+        //repeatPasword = (EditText) findViewById(R.id.reppassword);
         haveAc = (TextView) findViewById(R.id.haveAc);
         btnSignUp = (Button) findViewById(R.id.SignUp);
 

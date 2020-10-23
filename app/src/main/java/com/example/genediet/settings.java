@@ -175,10 +175,10 @@ public class settings extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 //check this
-                    Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
-//Uri downloadurl = tasksnapshot.getDownloadurl();
+                    //Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
+                    Uri downloadurl = taskSnapshot.getUploadSessionUri();
                     Map newImage = new HashMap();
-                    newImage.put("ProfileImageUrl",downloadUrl.toString());
+                    newImage.put("ProfileImageUrl",downloadurl.toString());
                     mPatientDatabase.updateChildren(newImage);
 
                     finish();
