@@ -58,7 +58,7 @@ public class Home extends AppCompatActivity {
     @SuppressLint("ResourceType")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.layout.menu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 

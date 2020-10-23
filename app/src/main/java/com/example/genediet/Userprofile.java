@@ -45,7 +45,7 @@ public class Userprofile extends AppCompatActivity {
         profileage = (TextView) findViewById(R.id.profileage);
         profilegene = (TextView) findViewById(R.id.profilegene);
         profileweight = (TextView) findViewById(R.id.profileweight);
-        profileupdate = (Button) findViewById(R.id.login);
+        profileupdate = (Button) findViewById(R.id.profileupdate);
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()){
+                            if(!task.isSuccessful() && mAuth.getCurrentUser().isEmailVerified()){
                                 //Toast.makeText(Login.this,"Login Error, Please Login Again",Toast.LENGTH_SHORT).show();
                                 Toast.makeText(Login.this,"Please Check Email to verify account",Toast.LENGTH_SHORT).show();
                             }
