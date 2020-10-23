@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".password"></activity>
-        <activity android:name=".UpdateProfile" />
         <activity android:name=".Userprofile" />
         <activity android:name=".settings" />
         <activity android:name=".Home" />
