@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
 
     EditText username,password;
     Button signin;
-    TextView notreg;
+    TextView notreg,Forgotpassword;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         signin = (Button) findViewById(R.id.login);
         notreg = (TextView) findViewById(R.id.notreg);
+        Forgotpassword = (TextView) findViewById(R.id.Forgotpassword);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -97,6 +98,13 @@ public class Login extends AppCompatActivity {
                 Intent p = new Intent(Login.this, Signup.class);
                 startActivity(p);
 
+            }
+        });
+        Forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent t = new Intent(Login.this,password.class);
+                startActivity(t);
             }
         });
     }

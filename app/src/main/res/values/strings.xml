@@ -4,4 +4,8 @@
     <string name="profileage">AGE:</string>
     <string name="profilegene">GENE:</string>
     <string name="profileweight_kg">WEIGHT(KG):</string>
+    <string name="forgot_pasword">forgot pasword</string>
+    <string name="not_registered_sign_up_here">Not registered? Sign Up here</string>
+    <string name="resetpass">Reset</string>
+    <string name="emailpass">Email</string>
 </resources>

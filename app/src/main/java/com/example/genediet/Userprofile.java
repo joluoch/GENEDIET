@@ -72,8 +72,8 @@ public class Userprofile extends AppCompatActivity {
                 Profile profile = dataSnapshot.getValue(Profile.class);
                 profilename.setText("Name: " + profile.getName());
                 profileage.setText("Age: " + profile.getAge());
-                profilegene.setText("Email: " + profile.getGenetype());
-                profileweight.setText("Email: " + profile.getWeight());
+                profilegene.setText("Gene: " + profile.getGenetype());
+                profileweight.setText("Weight: " + profile.getWeight());
 
             }
 
@@ -88,7 +88,7 @@ public class Userprofile extends AppCompatActivity {
         profileupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Userprofile.this, UpdateProfile.class));
+                startActivity(new Intent(Userprofile.this, settings.class));
 
             }
         });

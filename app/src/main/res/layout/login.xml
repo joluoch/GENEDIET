@@ -3,26 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Login"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
+    android:paddingBottom="6dp"
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
-    android:paddingTop="16dp"
-
+    android:paddingTop="6dp"
     >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
             <ImageView
-                android:layout_width="250dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="60dp"
@@ -76,15 +74,6 @@
                 android:layout_height="1dp"
                 android:background="@color/orange"
                 />
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="85dp"
-                android:layout_marginStart="85dp"
-                android:layout_marginTop="16dp"
-                android:text="Remember me "
-                android:textColor="@color/black"
-                />
             <Button
                 android:id="@+id/login"
                 android:layout_width="match_parent"
@@ -97,16 +86,43 @@
                 android:background="@color/orange"
                 android:textColor="@color/black"
                  />
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginStart="85dp"
+                android:layout_marginEnd="85dp"
+                android:layout_height="1dp"
+                android:background="#F3F3F3"
+                />
             <TextView
-            android:id="@+id/notreg"
+            android:id="@+id/Forgotpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="163dp"
             android:layout_marginEnd="85dp"
             android:layout_marginStart="85dp"
-            android:text="Not registered? Sign Up here"
+                android:gravity="center"
+            android:text="@string/forgot_pasword"
             android:clickable="true"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginStart="85dp"
+                android:layout_marginEnd="85dp"
+                android:layout_height="1dp"
+                android:background="#F3F3F3"
+                />
+
+            <TextView
+                android:id="@+id/notreg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="85dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="85dp"
+                android:layout_marginBottom="163dp"
+                android:clickable="true"
+                android:text="@string/not_registered_sign_up_here" />
 
 
         </LinearLayout>
