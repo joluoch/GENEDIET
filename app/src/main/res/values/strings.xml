@@ -8,4 +8,11 @@
     <string name="not_registered_sign_up_here">Not registered? Sign Up here</string>
     <string name="resetpass">Reset</string>
     <string name="emailpass">Email</string>
+    <string name="patient_information">Patient Information</string>
+    <string name="patiendid">Choose Patient Id</string>
+    <string name="submit">SUBMIT</string>
+    <string name="dna_sub_category">DNA sub Category</string>
+    <string name="dna_category">DNA Category</string>
+    <string name="patient_id">Patient Id</string>
+
 </resources>
