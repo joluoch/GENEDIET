@@ -15,10 +15,16 @@
         app:showAsAction="never"
         android:title="Profile">
     </item>
+    <item
+        android:id="@+id/DoctorMenu"
+        android:orderInCategory="300"
+        app:showAsAction="never"
+        android:title="Doctor">
+    </item>
 
     <item
         android:id="@+id/logoutMenu"
-        android:orderInCategory="300"
+        android:orderInCategory="400"
         app:showAsAction="never"
         android:title="Logout">
     </item>

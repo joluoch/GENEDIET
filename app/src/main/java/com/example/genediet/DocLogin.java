@@ -32,7 +32,7 @@ public class DocLogin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         username = (EditText) findViewById(R.id.docusername);
         password = (EditText) findViewById(R.id.doccpassword);
-        signin = (Button) findViewById(R.id.doclogin);
+        signin = (Button) findViewById(R.id.login1);
         notreg = (TextView) findViewById(R.id.doccnotreg);
         Forgotpassword = (TextView) findViewById(R.id.doccForgotpassword);
 
@@ -42,7 +42,7 @@ public class DocLogin extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if( mFirebaseUser != null && mFirebaseUser.isEmailVerified() ){
                     Toast.makeText(DocLogin.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(DocLogin.this, Home.class);
+                    Intent i = new Intent(DocLogin.this, DocHome.class);
                     startActivity(i);
                 }
                 else{
@@ -76,8 +76,8 @@ public class DocLogin extends AppCompatActivity {
                                 Toast.makeText(DocLogin.this,"Please Check Email to verify account",Toast.LENGTH_SHORT).show();
                             }
                             else if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().isEmailVerified()){
-                                Intent intToHome = new Intent(DocLogin.this,DocHome.class);
-                                startActivity(intToHome);
+                                Intent intToHom = new Intent(DocLogin.this,DocHome.class);
+                                startActivity(intToHom);
                             }
                         }
                     });
@@ -93,16 +93,16 @@ public class DocLogin extends AppCompatActivity {
         notreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent p = new Intent(DocLogin.this, DocSignup.class);
-                startActivity(p);
+                Intent c = new Intent(DocLogin.this, DocSignup.class);
+                startActivity(c);
 
             }
         });
         Forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent t = new Intent(DocLogin.this,password.class);
-                startActivity(t);
+                Intent o = new Intent(DocLogin.this,password.class);
+                startActivity(o);
             }
         });
     }

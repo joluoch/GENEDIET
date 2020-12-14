@@ -8,13 +8,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Home extends AppCompatActivity {
-    Button btnLogout, btnSettings;
+public class Home extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    Spinner spinnerprot,spinnerstarch,spinnervit,valprot,valstarch,valvit;
+    Button submit;
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
     FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -24,33 +28,60 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        spinnerprot = (Spinner)findViewById(R.id.patspinner);
+        spinnerstarch = (Spinner)findViewById(R.id.patspinner3);
+        spinnervit = (Spinner)findViewById(R.id.patspinner5);
+        valprot = (Spinner)findViewById(R.id.patspinner2);
+        valstarch = (Spinner)findViewById(R.id.patspinner4);
+        valvit = (Spinner)findViewById(R.id.patspinner6);
+        submit = (Button) findViewById(R.id.patsubmit);
 
-        /*mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if(mFirebaseUser != null&& mFirebaseUser.isEmailVerified()){
-            Intent n = new Intent(Home.this,settings.class);
-        }*/
+        ///FOOD
 
 
-       /* btnLogout = (Button) findViewById(R.id.logout);
-        btnSettings = (Button) findViewById(R.id.settings);
+        spinnerprot.setOnItemSelectedListener(this);
 
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent y = new Intent(Home.this,settings.class);
-                startActivity(y);
-            }
-        });
+        ArrayAdapter<CharSequence> starch = ArrayAdapter.createFromResource(
+                this,
+                R.array.STARCH,
+                android.R.layout.simple_spinner_item
+        );
+        starch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerstarch.setAdapter(starch);
+        spinnerstarch.setOnItemSelectedListener(this);
 
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intToMain = new Intent(Home.this, Login.class);
-                startActivity(intToMain);
-            }
-        });*/
+        ArrayAdapter<CharSequence> vitamins = ArrayAdapter.createFromResource(
+                this,
+                R.array.VITAMINS,
+                android.R.layout.simple_spinner_item
+        );
+        vitamins.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnervit.setAdapter(vitamins);
+        spinnervit.setOnItemSelectedListener(this);
+        ///END FOOD
+
+        valprot.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> valst = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        valst.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        valstarch.setAdapter(valst);
+        valstarch.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> vitvalue = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        vitvalue.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        valvit.setAdapter(vitvalue);
+        valvit.setOnItemSelectedListener(this);
+
+
+
 
 
 
@@ -73,9 +104,12 @@ public class Home extends AppCompatActivity {
             case R.id.profileMenu:
                 startActivity(new Intent(Home.this, Userprofile.class));
                 break;
+            case R.id.DoctorMenu:
+                startActivity(new Intent(Home.this, DocHome.class));
+                break;
             case R.id.logoutMenu:
                 FirebaseAuth.getInstance().signOut();
-                Intent intToMain = new Intent(Home.this, Login.class);
+                Intent intToMain = new Intent(Home.this, DocPat.class);
                 startActivity(intToMain);
                 break;
 
@@ -84,6 +118,15 @@ public class Home extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
 
 

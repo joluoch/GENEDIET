@@ -75,7 +75,7 @@
                 android:background="@color/orange"
                 />
             <Button
-                android:id="@+id/doclogin"
+                android:id="@+id/login1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
