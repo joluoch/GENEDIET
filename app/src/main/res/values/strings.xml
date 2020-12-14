@@ -29,6 +29,8 @@
     <string name="quantyty1">Quantity</string>
     <string name="quantity_2">Quantity</string>
     <string name="quantity_3">Quantity</string>
+    <string name="value_b">VALUE</string>
+    <string name="value_c">VALUE</string>
     <string-array name="DNA_A">
         <item>ARHGAP31</item>
         <item>BAP1</item>

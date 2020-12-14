@@ -82,9 +82,6 @@ public class Home extends AppCompatActivity implements AdapterView.OnItemSelecte
 
 
 
-
-
-
     }
     @SuppressLint("ResourceType")
     @Override
@@ -105,7 +102,7 @@ public class Home extends AppCompatActivity implements AdapterView.OnItemSelecte
                 startActivity(new Intent(Home.this, Userprofile.class));
                 break;
             case R.id.DoctorMenu:
-                startActivity(new Intent(Home.this, DocHome.class));
+                startActivity(new Intent(Home.this, DocPage.class));
                 break;
             case R.id.logoutMenu:
                 FirebaseAuth.getInstance().signOut();

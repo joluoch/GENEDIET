@@ -42,7 +42,7 @@ public class DocLogin extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if( mFirebaseUser != null && mFirebaseUser.isEmailVerified() ){
                     Toast.makeText(DocLogin.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(DocLogin.this, DocHome.class);
+                    Intent i = new Intent(DocLogin.this, DocPage.class);
                     startActivity(i);
                 }
                 else{
@@ -76,7 +76,7 @@ public class DocLogin extends AppCompatActivity {
                                 Toast.makeText(DocLogin.this,"Please Check Email to verify account",Toast.LENGTH_SHORT).show();
                             }
                             else if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().isEmailVerified()){
-                                Intent intToHom = new Intent(DocLogin.this,DocHome.class);
+                                Intent intToHom = new Intent(DocLogin.this,DocPage.class);
                                 startActivity(intToHom);
                             }
                         }
