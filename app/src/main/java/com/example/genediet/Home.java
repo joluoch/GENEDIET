@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Home extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner spinnerprot,spinnerstarch,spinnervit,valprot,valstarch,valvit;
+    Spinner spprot1,spprot2,spprot3,spst1,spst2,spvit1,spvit2,spvit3,spvit4,spvit5;
     Button submit;
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
@@ -28,58 +28,111 @@ public class Home extends AppCompatActivity implements AdapterView.OnItemSelecte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        spinnerprot = (Spinner)findViewById(R.id.patspinner);
-        spinnerstarch = (Spinner)findViewById(R.id.patspinner3);
-        spinnervit = (Spinner)findViewById(R.id.patspinner5);
-        valprot = (Spinner)findViewById(R.id.patspinner2);
-        valstarch = (Spinner)findViewById(R.id.patspinner4);
-        valvit = (Spinner)findViewById(R.id.patspinner6);
+        spprot1 = (Spinner)findViewById(R.id.spinnerprot1);
+        spprot2 = (Spinner)findViewById(R.id.spinnerprot2);
+        spprot3 = (Spinner)findViewById(R.id.spinnerprot3);
+        spst1 = (Spinner)findViewById(R.id.spinnerstarch1);
+        spst2 = (Spinner)findViewById(R.id.spinnerstarch2);
+        spvit1 = (Spinner)findViewById(R.id.spinnervit1);
+        spvit2 = (Spinner)findViewById(R.id.spinnervit2);
+        spvit3 = (Spinner)findViewById(R.id.spinnervit3);
+        spvit4 = (Spinner)findViewById(R.id.spinnervit4);
+        spvit5 = (Spinner)findViewById(R.id.spinnervit5);
         submit = (Button) findViewById(R.id.patsubmit);
 
-        ///FOOD
+        ///protein
 
+        spprot1.setOnItemSelectedListener(this);
 
-        spinnerprot.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> starch = ArrayAdapter.createFromResource(
-                this,
-                R.array.STARCH,
-                android.R.layout.simple_spinner_item
-        );
-        starch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerstarch.setAdapter(starch);
-        spinnerstarch.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> vitamins = ArrayAdapter.createFromResource(
-                this,
-                R.array.VITAMINS,
-                android.R.layout.simple_spinner_item
-        );
-        vitamins.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnervit.setAdapter(vitamins);
-        spinnervit.setOnItemSelectedListener(this);
-        ///END FOOD
-
-        valprot.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> valst = ArrayAdapter.createFromResource(
+        ArrayAdapter<CharSequence> prot2 = ArrayAdapter.createFromResource(
                 this,
                 R.array.quantity,
                 android.R.layout.simple_spinner_item
         );
-        valst.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        valstarch.setAdapter(valst);
-        valstarch.setOnItemSelectedListener(this);
+        prot2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spprot2.setAdapter(prot2);
+        spprot2.setOnItemSelectedListener(this);
 
-        ArrayAdapter<CharSequence> vitvalue = ArrayAdapter.createFromResource(
+        ArrayAdapter<CharSequence> prot3 = ArrayAdapter.createFromResource(
                 this,
                 R.array.quantity,
                 android.R.layout.simple_spinner_item
         );
-        vitvalue.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        valvit.setAdapter(vitvalue);
-        valvit.setOnItemSelectedListener(this);
+        prot3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spprot3.setAdapter(prot3);
+        spprot3.setOnItemSelectedListener(this);
+        //end protein
 
+        //start starch
+
+        ArrayAdapter<CharSequence> st1 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        st1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spst1.setAdapter(st1);
+        spst1.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> st2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        st2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spst2.setAdapter(st2);
+        spst2.setOnItemSelectedListener(this);
+
+        //end starch
+
+        //start vitamins
+
+        ArrayAdapter<CharSequence> vit1 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        vit1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spvit1.setAdapter(vit1);
+        spvit1.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> vit2 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        vit2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spvit2.setAdapter(vit2);
+        spvit2.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> vit3 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        vit3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spvit3.setAdapter(vit3);
+        spvit3.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> vit4 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        vit4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spvit4.setAdapter(vit4);
+        spvit4.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> vit5 = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity,
+                android.R.layout.simple_spinner_item
+        );
+        vit5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spvit5.setAdapter(vit5);
+        spvit5.setOnItemSelectedListener(this);
+
+        //end vitamins
 
 
     }

@@ -31,53 +31,71 @@
     <string name="quantity_3">Quantity</string>
     <string name="value_b">VALUE</string>
     <string name="value_c">VALUE</string>
-    <string-array name="DNA_A">
-        <item>ARHGAP31</item>
-        <item>BAP1</item>
-        <item>BMPR1A</item>
-        <item>CAVIN1</item>
-        <item>CEP290</item>
-    </string-array>
-    <string-array name="DNA_B">
-        <item>CHD7</item>
-        <item>BCR</item>
-        <item>BMPR2</item>
-        <item>CCM2</item>
-        <item>CHM</item>
-    </string-array>
-    <string-array name="DNA_C">
-        <item>APOB</item>
-        <item>CEP57</item>
-        <item>CLN5</item>
-        <item>CLN6</item>
-        <item>CLN8</item>
-    </string-array>
-    <string-array name="PROTEIN">
-        <item>Glycine max(soybeans)</item>
-        <item>Vicia faba(beans)</item>
-        <item>Trigonella foenum-graecum(Fenugreek)</item>
+    <string name="glycine_max_soybeans">Glycine max(soybeans)</string>
+    <string name="submit_doc">SUBMIT</string>
 
-    </string-array>
-    <string-array name="STARCH">
-        <item>Camellia sinensis(Tea)</item>
-        <item>Cinnamomum verum(cinammon)</item>
-    </string-array>
-    <string-array name="VITAMINS">
-        <item>Vitis vinifera(grapes)</item>
-        <item>Laurus nobilis(greans)</item>
-        <item>Citrus sinensis(Lemon)</item>
-        <item>Brassica oleracea(cabbages)</item>
-        <item>Origanum vulgare(mint)</item>
-    </string-array>
     <string-array name="values">
-        <item>0.0–0.030</item>
-        <item>0.031–0.060</item>
-        <item>0.061–0.090</item>
+        <item>DNA-value</item>
+        <item>0.009</item>
+        <item>0.1</item>
+        <item>0.2</item>
+        <item>0.3</item>
+        <item>0.4</item>
+        <item>0.5</item>
+        <item>0.6</item>
+        <item>0.7</item>
+        <item>0.8</item>
+        <item>0.9</item>
     </string-array>
+
     <string-array name="quantity">
-        <item>0gm-30gm</item>
-        <item>31gm–60gm</item>
-        <item>61gm–90gm</item>
+        <item>(gm)</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
     </string-array>
 
 </resources>
+    <!--  <string-array name="DNA_A">
+            <item>ARHGAP31</item>
+            <item>BAP1</item>
+            <item>BMPR1A</item>
+            <item>CAVIN1</item>
+            <item>CEP290</item>
+        </string-array>
+        <string-array name="DNA_B">
+            <item>CHD7</item>
+            <item>BCR</item>
+            <item>BMPR2</item>
+            <item>CCM2</item>
+            <item>CHM</item>
+        </string-array>
+        <string-array name="DNA_C">
+            <item>APOB</item>
+            <item>CEP57</item>
+            <item>CLN5</item>
+            <item>CLN6</item>
+            <item>CLN8</item>
+        </string-array>
+        <string-array name="PROTEIN">
+            <item>Glycine max(soybeans)</item>
+            <item>Vicia faba(beans)</item>
+            <item>Trigonella foenum-graecum(Fenugreek)</item>
+
+        </string-array>
+        <string-array name="STARCH">
+            <item>Camellia sinensis(Tea)</item>
+            <item>Cinnamomum verum(cinammon)</item>
+        </string-array>
+        <string-array name="VITAMINS">
+            <item>Vitis vinifera(grapes)</item>
+            <item>Laurus nobilis(greans)</item>
+            <item>Citrus sinensis(Lemon)</item>
+            <item>Brassica oleracea(cabbages)</item>
+            <item>Origanum vulgare(mint)</item>
+        </string-array>-->
