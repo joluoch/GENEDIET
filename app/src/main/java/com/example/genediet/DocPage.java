@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -371,6 +372,7 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
             public void onClick(View view) {
                 InsertData();
                 mergedView();
+                viewData();
             }
         });
     }
@@ -380,9 +382,7 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
                 " '" + item12 + "', '" + item13 + "',+ '" + item14 + "', '" + item15 + "');";
 
 
-        /*SQLiteDataBaseQueryHolder = "INSERT INTO AndroidJSonTable (ARHGAP31,ARHGAP31,BAP1,BMPR1A,CAVIN1 ,CEP290,CHD7,BCR,BMPR2 ,CCM2 ,CHM ,APOB ,CEP57,CLN5,CLN6,CLN8) VALUES('"+spdna1+"', '"+spdna2+", '"+spdna3+", '"+spdna4+", '"+spdna5+", '"+spdnb1+"" +
-                ", '"+spdnb2+"" + ", '"+spdnb3+", '"+spdnb4+", '"+spdnb5+", '"+spdnc1+", '"+spdnc2+", '"+spdnc3+",+ '"+spdnc4+", '"+spdnc5+"');";
-*/
+
         sqLiteDatabaseObj.execSQL(SQLiteDataBaseQueryHolder);
 
         Toast.makeText(DocPage.this,"Data Inserted Successfully", Toast.LENGTH_LONG).show();
@@ -390,11 +390,38 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
 
     }
     public void mergedView(){
-        SQLiteDataBaseQueryHolder="CREATE VIEW merged AS SELECT * FROM doctors_table  LEFT OUTER JOIN patients_table";
-        sqLiteDatabaseObj.execSQL(SQLiteDataBaseQueryHolder);
+        SQLiteDataBaseQueryHolder="CREATE VIEW  merged AS SELECT * FROM doctors_table  LEFT OUTER JOIN patients_table";
+       sqLiteDatabaseObj.execSQL(SQLiteDataBaseQueryHolder);
         Toast.makeText(this, "Merged View created successfully", Toast.LENGTH_SHORT).show();
 
         saveToCSV();
+    }
+    public void viewData(){
+        DBHelper dbHelper=new DBHelper(getApplicationContext());
+        Cursor cursorCsv=sqLiteDatabaseObj.rawQuery("SELECT * FROM merged",null);
+//        csvWriter.writeNext(cursorCsv.getColumnNames());
+        //Cursor cursorCsv=sqLiteDatabaseObj.rawQuery("SELECT * FROM merged",null);
+        //csvWriter.writeNext(cursorCsv.getColumnNames());
+
+        while (cursorCsv.moveToNext()){
+//            String arrStr[]={cursorCsv.getColumnNames()};
+            Log.i("Data",""+cursorCsv.getColumnNames());
+            //csvWriter.writeNext(arrStr);
+        }
+        /*String arrStr[]=new String[cursorCsv.getColumnNames()];
+        int i=0;
+        cursorCsv.moveToFirst();
+        while (!cursorCsv.isAfterLast()){
+             arrStr[i]=cursorCsv.getString(0);
+//            csvWriter.writeNext(arrStr);
+            i++;
+            if (cursorCsv != null){
+                cursorCsv.moveToNext();
+                Log.i("Data","Column  "+arrStr[i]);
+            }
+
+
+        }*/
     }
 //    @Override
 //    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
