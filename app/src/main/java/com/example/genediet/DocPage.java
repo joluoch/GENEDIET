@@ -1,11 +1,19 @@
 package com.example.genediet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +26,13 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import au.com.bytecode.opencsv.CSVWriter;
+import helpers.DBHelper;
+
 public class DocPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spdna1,spdna2,spdna3,spdna4,spdna5,spdnb1,
             spdnb2,spdnb3,spdnb4,spdnb5,spdnc1,spdnc2,spdnc3,spdnc4,spdnc5;
@@ -26,7 +41,7 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
     FirebaseAuth.AuthStateListener mAuthStateListener;
-
+    public static final int REQUEST_PERMISSIONS = 100;//Any integer
     SQLiteDatabase sqLiteDatabaseObj;
     String SQLiteDataBaseQueryHolder;
 
@@ -339,6 +354,9 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
 
             }
         });
+        ActivityCompat.requestPermissions(DocPage.this,
+                new String[]{Manifest.permission .WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS);
         //DNA-C END
 
         /*SQLiteDatabase mydatabase = openOrCreateDatabase("DNA",MODE_PRIVATE,null);
@@ -352,6 +370,7 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View view) {
                 InsertData();
+                mergedView();
             }
         });
     }
@@ -369,6 +388,61 @@ public class DocPage extends AppCompatActivity implements AdapterView.OnItemSele
         Toast.makeText(DocPage.this,"Data Inserted Successfully", Toast.LENGTH_LONG).show();
 
 
+    }
+    public void mergedView(){
+        SQLiteDataBaseQueryHolder="CREATE VIEW merged AS SELECT * FROM doctors_table  LEFT OUTER JOIN patients_table";
+        sqLiteDatabaseObj.execSQL(SQLiteDataBaseQueryHolder);
+        Toast.makeText(this, "Merged View created successfully", Toast.LENGTH_SHORT).show();
+
+        saveToCSV();
+    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+//                                           @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (grantResults.length > 0
+//                && grantResults[0] == PackageManager.RE) {
+//            goToCamera(null);
+//        } else {
+//            // permission denied, boo! Disable the
+//            // functionality that depends on this permission.
+//        }
+//    }
+
+    public void saveToCSV(){
+        //CHECK IF YOU HAVE WRITE PERMISSIONS OR RETURN
+        int permission = ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(), "Storage permissions not granted", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+        File dbFile=getDatabasePath("FoodRec.db");
+        DBHelper dbHelper=new DBHelper(getApplicationContext());
+        File export_dire=new File(Environment.getExternalStorageDirectory(),"");
+        if (!export_dire.exists()){
+            export_dire.mkdirs();
+        }
+        File file=new File(export_dire,"data.csv");
+        try{
+            file.createNewFile();
+            CSVWriter csvWriter=new CSVWriter(new FileWriter(file));
+            sqLiteDatabaseObj=dbHelper.getReadableDatabase();
+            Cursor cursorCsv=sqLiteDatabaseObj.rawQuery("SELECT * FROM merged",null);
+            csvWriter.writeNext(cursorCsv.getColumnNames());
+
+            while (cursorCsv.moveToNext()){
+                String arrStr[]={cursorCsv.getString(0)};
+                csvWriter.writeNext(arrStr);
+            }
+            Toast.makeText(this, "Data exported successfully!!", Toast.LENGTH_SHORT).show();
+        csvWriter.close();
+        cursorCsv.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @SuppressLint("ResourceType")
